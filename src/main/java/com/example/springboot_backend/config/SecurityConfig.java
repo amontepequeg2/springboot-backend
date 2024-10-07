@@ -64,13 +64,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/login", "/api/users/register").permitAll()
+                        .requestMatchers("/api/login", "/api/users/register", "/api/users").permitAll() // Permitir acceso a /api/users
                         .anyRequest().authenticated()
                 )
                 .formLogin().permitAll()
                 .and()
                 .logout().permitAll();
-
+    
         return http.build();
     }
 }
